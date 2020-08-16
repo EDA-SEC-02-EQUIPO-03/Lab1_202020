@@ -117,8 +117,8 @@ def countElementsByCriteria(criteria, column, lst):
                 counter+=1
         t1_stop = process_time()
         print("Tiempo de ejecución ",t1_stop-t1_start," segundos")
-    return counter
-
+    return counter 
+    #esto es un intento
 def main():
     """
     Método principal del programa, se encarga de manejar todos los metodos adicionales creados
