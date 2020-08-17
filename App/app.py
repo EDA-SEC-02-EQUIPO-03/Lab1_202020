@@ -71,8 +71,8 @@ def printMenu():
     print("\nBienvenido")
     print("1- Cargar Datos")
     print("2- Contar los elementos de la Lista")
-    print("3- Contar elementos filtrados por palabra clave")
-    print("4- Consultar elementos a partir de dos listas")
+    print("3- Contar elementos filtrados por palabra clave del titulo de una pelicula")
+    print("4- Consultar las peliculas buenas de un director")
     print("0- Salir")
 
 def countElementsFilteredByColumn(criteria, column, lst):
@@ -106,6 +106,7 @@ def countElementsByCriteria(criteria, list1,list2):
     """
     Retorna la cantidad de elementos que cumplen con un criterio para una columna dada
     """
+    t1_start = process_time() #tiempo inicial
     vota=0
     id=0
     buenas=0
@@ -122,6 +123,8 @@ def countElementsByCriteria(criteria, list1,list2):
         prom=round(sumsi/buenas,2)
     else:
         prom=0
+    t1_stop = process_time() #tiempo final
+    print("Tiempo de ejecución ",t1_stop-t1_start," segundos")
     return [buenas,prom]
 
 def main():
