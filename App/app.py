@@ -162,12 +162,12 @@ def main():
         inputs =input('Seleccione una opción para continuar\n') #leer opción ingresada
         if len(inputs)>0:
             if int(inputs[0])==1: #opcion 1
-                opcion=input("Seleccione 1 para agregar todos los datos y 0 para datos de prueba")
-                if opcion==1:
+                opcion=input("Seleccione 1 para agregar todos los datos y 0 para datos de prueba\n5")
+                if int(opcion)==1:
                     loadCSVFile("Data/themoviesdb/AllMoviesDetailsCleaned.csv", detalles) #llamar funcion cargar datos
                     loadCSVFile("Data/themoviesdb/AllMoviesCastingRaw.csv", casting)
                     pass
-                elif opcion==0:
+                elif int(opcion)==0:
                     loadCSVFile("Data/themoviesdb/SmallMoviesDetailsCleaned.csv", detalles) #llamar funcion cargar datos
                     loadCSVFile("Data/themoviesdb/MoviesCastingRaw-small.csv", casting)
                     pass
