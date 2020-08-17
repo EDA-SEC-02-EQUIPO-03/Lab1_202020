@@ -123,25 +123,25 @@ def countElementsByCriteria(criteria, column, lst):
     return counter 
  
 def countElementsBy2Criteria(criteria_1,lst_1,lst_2):
-    lst_prob=[]
-    count=0
-    prom=0
-    if len(lst_1)== len(lst_2) == 0   :
+    lst_prov=[]#inicializa lista_provisional
+    count=0#inicializa conteo
+    prom=0#inicializa promedio
+    if len(lst_1)== len(lst_2) == 0   : #verifica que ninguna lista esté vacia
         print("La lista esta vacía")
         return -1
-    elif len(lst_1) != len(lst_2):
+    elif len(lst_1) != len(lst_2): #verifica que ambas listas de datos tengan misma longitud
         print("La listas no coinciden")
         return -1
     else:
         t1_start = process_time()
         for element in lst_2:
-            if element["director_name"]== criteria_1:
-                lst_prob.append(element["id"])
+            if element["director_name"]== criteria_1:#filtra por director
+                lst_prov.append(element["id"])#guarda id de filtrados
         for element in lst_1:
-            if element["id"]in lst_prob and float(element["vote_average"])>=6:
+            if element["id"]in lst_prov and float(element["vote_average"])>=6: # filtra por director y si cumple con que es buena pelicula
                 count+=1
                 prom+=float(element["vote_average"])
-        del lst_prob[:]
+        del lst_prov[:]# elimina lista provisional
         t1_stop = process_time()
         print("Tiempo de ejecución ",t1_stop-t1_start," segundos")
         return count,round(prom/count,1)
@@ -162,8 +162,15 @@ def main():
         inputs =input('Seleccione una opción para continuar\n') #leer opción ingresada
         if len(inputs)>0:
             if int(inputs[0])==1: #opcion 1
-                loadCSVFile("Data/themoviesdb/AllMoviesDetailsCleaned.csv", detalles) #llamar funcion cargar datos
-                loadCSVFile("Data/themoviesdb/AllMoviesCastingRaw.csv", casting)
+                opcion=input("Seleccione 1 para agregar todos los datos y 0 para datos de prueba")
+                if opcion==1:
+                    loadCSVFile("Data/themoviesdb/AllMoviesDetailsCleaned.csv", detalles) #llamar funcion cargar datos
+                    loadCSVFile("Data/themoviesdb/AllMoviesCastingRaw.csv", casting)
+                    pass
+                elif opcion==0:
+                    loadCSVFile("Data/themoviesdb/SmallMoviesDetailsCleaned.csv", detalles) #llamar funcion cargar datos
+                    loadCSVFile("Data/themoviesdb/MoviesCastingRaw-small.csv", casting)
+                    pass
                 print("Datos cargados, "+str(len(casting)+len(detalles))+" elementos cargados")
             elif int(inputs[0])==2: #opcion 2
                 if len(detalles)==0: #obtener la longitud de la lista
@@ -180,11 +187,9 @@ def main():
             elif int(inputs[0])==5: #opcion 5
                 director = input('Ingrese el nombre del director ')
                 counter= countElementsBy2Criteria(director,detalles,casting)
-                print("Coinciden ",str(counter[0])," peliculas buenas para el director: '", director ,"con un promedio de: ",str(counter[1]))
+                print("Coinciden ",str(counter[0])," peliculas buenas para el director: '", director ,"con un promedio de calificación: ",str(counter[1]))
             elif int(inputs[0])==0: #opcion 0, salir
-                #sys.exit(0)
-                x=False
-                print(detalles[1])
-
+                sys.exit(0)
+                
 if __name__ == "__main__":
     main()
