@@ -106,19 +106,23 @@ def countElementsByCriteria(criteria, list1,list2):
     """
     Retorna la cantidad de elementos que cumplen con un criterio para una columna dada
     """
+    vota=0
+    id=0
     buenas=0
-    todas=0
+    sumsi=0
     for f in range(1,len(list2)):
-            if list[f][12]==criteria:
-                id=list2[f][0]
-                todas+=1
-    for f in range(1,len(list1)): 
-        if list[f][0] == id:
-            if list[f][17] >=6:
-                buenas+=1
-    prom=buenas/todas
-    return (buenas,prom)
-
+            if criteria== list2[f]["director_name"]:
+                id=list2[f]["id"] 
+                if id==list1[f]["id"]:
+                    vota=list1[f]["vote_average"]
+                if float(vota) >=6.0:
+                    sumsi+=float(vota)
+                    buenas+=1
+    if buenas !=0:
+        prom=round(sumsi/buenas,2)
+    else:
+        prom=0
+    return [buenas,prom]
 
 def main():
     """
@@ -147,13 +151,13 @@ def main():
                     print("La lista esta vacía")        
                 else: print("La lista del archivo2 tiene "+str(len(lista2))+" elementos")
             elif int(inputs[0])==3: #opcion 3
-                criteria =input('Ingrese el criterio de búsqueda\n')
+                criteria =str(input('Ingrese el criterio de búsqueda\n'))
                 counter=countElementsFilteredByColumn(criteria, "title", lista1) #filtrar una columna por criterio  
                 print("Coinciden ",counter," elementos con el crtierio: ", criteria  )
             elif int(inputs[0])==4: #opcion 4
                 criteria =input('Ingrese el nombre del director:\n')
                 counter=countElementsByCriteria(criteria,lista1,lista2)
-                print("El director",criteria,"tiene",counter[0],"buenas peliculas y este ")
+                print("El director",criteria,"tiene",counter[0],"buenas peliculas y este tiene un promedio de votaciones de: ", counter[1])
             elif int(inputs[0])==0: #opcion 0, salir
                 sys.exit(0)
 
