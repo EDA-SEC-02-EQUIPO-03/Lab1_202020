@@ -168,8 +168,8 @@ def main():
                     loadCSVFile("Data/themoviesdb/AllMoviesCastingRaw.csv", casting)
                     pass
                 elif int(opcion)==0:
-                    loadCSVFile("Data/themoviesdb/SmallMoviesDetailsCleaned.csv", detalles) #llamar funcion cargar datos
-                    loadCSVFile("Data/themoviesdb/MoviesCastingRaw-small.csv", casting)
+                    loadCSVFile("Data/SmallMoviesDetailsCleaned.csv", detalles) #llamar funcion cargar datos
+                    loadCSVFile("Data/MoviesCastingRaw-small.csv", casting)
                     pass
                 print("Datos cargados, "+str(len(casting)+len(detalles))+" elementos cargados")
             elif int(inputs[0])==2: #opcion 2
