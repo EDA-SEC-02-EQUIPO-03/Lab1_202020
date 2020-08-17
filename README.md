@@ -10,4 +10,4 @@
 #Integrantes Grupo
 *Daniel Alejandro Parra Lara:               da.parral 201821667
 *Melissa Lizeth Contreras Rojas:            m.contrerasr 202011876
-*David Andres Sanchez Umbarilla:            d.sanchezu 202013594
+*David Andres Sanchez Umbarila:            d.sanchezu 202013594
